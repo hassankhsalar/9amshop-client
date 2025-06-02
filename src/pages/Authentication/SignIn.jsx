@@ -1,11 +1,96 @@
-import React from 'react';
+import { useContext, useState } from "react";
+import { AuthContext } from "../../Provider/AuthProvider";
+import { useNavigate } from "react-router-dom";
 
-const SignIn = () => {
-    return (
-        <div>
-            signin
+export default function SignIn() {
+  const { signIn } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setMessage("");
+
+    try {
+      setLoading(true);
+      await signIn(email, password);
+      setMessage("Login successful!");
+      navigate("/");
+    } catch (error) {
+      console.error(error);
+      setMessage(
+        error?.message || "Login failed. Please check your credentials."
+      );
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <section className="w-full min-h-screen flex flex-col lg:flex-row items-center gap-[30px] justify-between bg-[#0A0D17] p-[40px]">
+      <form
+        onSubmit={handleSubmit}
+        className="lg:w-[60%] w-full bg-[#161823] p-6 rounded-lg shadow-xl"
+      >
+        <div className="text-white mb-6">
+          <h1 className="text-3xl font-bold pb-2">Sign In to Your Account</h1>
+          <p className="text-gray-400 text-sm">
+            Welcome back! Please enter your credentials.
+          </p>
         </div>
-    );
-};
 
-export default SignIn;
+        <div className="flex flex-col gap-4">
+          {/* Email */}
+          <input
+            type="email"
+            placeholder="Email address"
+            className="border border-gray-700 rounded-md px-4 py-3 bg-[#22222f] text-white placeholder-gray-400"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+
+          {/* Password */}
+          <input
+            type="password"
+            placeholder="Password"
+            className="border border-gray-700 rounded-md px-4 py-3 bg-[#22222f] text-white placeholder-gray-400"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+
+          {message && (
+            <p
+              className={`text-sm ${
+                message.includes("success") ? "text-green-400" : "text-red-400"
+              }`}
+            >
+              {message}
+            </p>
+          )}
+
+          <button
+            type="submit"
+            disabled={loading}
+            className="py-3 px-6 bg-gradient-to-r from-[#763AF5] to-[#A604F2] text-white rounded-md text-lg font-semibold transition-all hover:opacity-90 disabled:opacity-50"
+          >
+            {loading ? "Signing in..." : "Sign In"}
+          </button>
+        </div>
+      </form>
+
+      <div className="hidden lg:block">
+        <img
+          src="https://i.ibb.co/h7rjVJS/Image.png"
+          alt="Sign in visual"
+          className="w-[500px]"
+        />
+      </div>
+    </section>
+  );
+}

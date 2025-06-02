@@ -1,9 +1,11 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import Navbar from "../globalComponents/Navbar";
 import Footer from "../globalComponents/Footer";
 
 
 const DashboardLayout = () => {
+    const location = useLocation();
+    console.log(location);
     return (
         <div>
             <Navbar/>
