@@ -12,6 +12,7 @@ import {
 import {BsArrowRight} from "react-icons/bs";
 import {CgIfDesign} from "react-icons/cg";
 import {FaCubesStacked} from "react-icons/fa6";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
     const [mobileAboutUsOpen, setMobileAboutUsOpen] = useState(false)
@@ -19,10 +20,12 @@ const Navbar = () => {
     const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false)
 
     return (
-        <nav className="flex items-center justify-between w-full relative h-auto">
+        <nav className="flex items-center justify-between w-full relative h-20">
 
             {/* logo */}
-            <img src="https://i.ibb.co/0BZfPq6/darklogo.png" alt="logo" className="w-[60px] "/>
+           <Link to='/'>
+            <img src="/logobg.png" alt="logo" className="w-[70px] h-14 "/>
+           </Link>
 
             {/* nav links */}
             <ul className="items-center gap-[20px] text-[1rem] text-[#424242] md:flex hidden">
