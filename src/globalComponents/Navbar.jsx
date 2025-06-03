@@ -1,5 +1,5 @@
 
-import React, {useState} from "react";
+import React, {useContext, useState} from "react";
 
 import {IoIosArrowDown, IoIosSearch} from "react-icons/io";
 import {FaDiscord} from "react-icons/fa";
@@ -12,15 +12,29 @@ import {
 import {BsArrowRight} from "react-icons/bs";
 import {CgIfDesign} from "react-icons/cg";
 import {FaCubesStacked} from "react-icons/fa6";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../Provider/AuthProvider";
 
 const Navbar = () => {
+    const { user, logOut } = useContext(AuthContext);
+    const navigate = useNavigate();
     const [mobileAboutUsOpen, setMobileAboutUsOpen] = useState(false)
     const [mobileServiceOpen, setMobileServiceOpen] = useState(false)
     const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false)
 
+    const handleLogOut = () => {
+        logOut()
+        .then(() => {
+            console.log('successfully logged out');
+            navigate('/signin')
+        })
+        .catch(error => {
+            console.log('failed to logout')
+        })
+    }
+
     return (
-        <nav className="flex items-center justify-between w-full relative h-20">
+        <nav className="flex items-center justify-between w-full relative h-20 bg-white dark:bg-slate-900">
 
             {/* logo */}
            <Link to='/'>
@@ -160,10 +174,9 @@ const Navbar = () => {
                         className="absolute top-[9px] dark:text-slate-500 left-3 text-[#424242] text-[1.3rem]"/>
                 </div>
 
-                <FaDiscord
-                    className="text-[1.6rem] text-[#424242] dark:text-[#abc2d3] cursor-pointer hover:text-[#3B9DF8] transition-all duration-500 "/>
-                <TbBrandGithubFilled
-                    className="text-[1.6rem] text-[#424242] dark:text-[#abc2d3] cursor-pointer hover:text-[#3B9DF8] transition-all duration-500"/>
+                <button onClick={handleLogOut} className="btn bg-orange-700">Logout</button>
+                <a href="https://github.com/hassankhsalar" target="_blank"><TbBrandGithubFilled
+                    className="text-[1.6rem] text-[#424242] dark:text-[#abc2d3] cursor-pointer hover:text-[#3B9DF8] transition-all duration-500"/></a>
 
                 <CiMenuFries
                     className="text-[1.6rem] dark:text-[#abc2d3] text-[#424242]c cursor-pointer md:hidden flex"

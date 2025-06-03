@@ -78,11 +78,11 @@ export default function SignUp() {
   };
 
   return (
-    <section className="w-full min-h-screen flex flex-col lg:flex-row items-center gap-[30px] justify-between bg-[#0A0D17] p-[40px]">
+    <section className="w-full min-h-screen flex flex-col lg:flex-row items-center gap-[30px] justify-evenly bg-[#0A0D17] p-[40px]">
      
       <form
         onSubmit={handleSubmit}
-        className="lg:w-[60%] w-full bg-[#161823] p-6 rounded-lg shadow-xl"
+        className="lg:w-[40%] xl:w-[35%] 2xl:w-[30%]  w-8/12 bg-[#161823] p-6 rounded-lg shadow-xl"
       >
         <div className="text-white mb-6">
           <h1 className="text-3xl font-bold pb-2">Create Your Account</h1>

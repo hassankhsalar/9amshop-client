@@ -10,6 +10,7 @@ export default function SignIn() {
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
+  const [rememberMe, setRememberMe] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -17,7 +18,7 @@ export default function SignIn() {
 
     try {
       setLoading(true);
-      await signIn(email, password);
+      await signIn(email, password, rememberMe);
       setMessage("Login successful!");
       navigate("/");
     } catch (error) {
@@ -31,10 +32,10 @@ export default function SignIn() {
   };
 
   return (
-    <section className="w-full min-h-screen flex flex-col lg:flex-row items-center gap-[30px] justify-between bg-[#0A0D17] p-[40px]">
+    <section className="w-full min-h-screen flex flex-col lg:flex-row items-center gap-[30px] justify-evenly bg-[#0A0D17] p-[40px]">
       <form
         onSubmit={handleSubmit}
-        className="lg:w-[60%] w-full bg-[#161823] p-6 rounded-lg shadow-xl"
+        className="lg:w-[40%] xl:w-[30%] 2xl:w-[25%] md:w-5/12 w-8/12 bg-[#161823] p-6 rounded-lg shadow-xl"
       >
         <div className="text-white mb-6">
           <h1 className="text-3xl font-bold pb-2">Sign In to Your Account</h1>
@@ -74,6 +75,14 @@ export default function SignIn() {
             </p>
           )}
 
+          <div className="flex items-center gap-2 text-white">
+            <input
+              type="checkbox"
+              checked={rememberMe}
+              onChange={(e) => setRememberMe(e.target.checked)}
+            />
+            <label>Remember Me</label>
+          </div>
           <button
             type="submit"
             disabled={loading}

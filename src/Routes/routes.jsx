@@ -5,6 +5,7 @@ import DashboardLayout from "../Layout/DashboardLayout";
 import DashboardHome from "../pages/DashboardHome";
 import SignUp from "../pages/Authentication/SignUp";
 import SignIn from "../pages/Authentication/SignIn";
+import Error from "../pages/Error";
 
 export const router = createBrowserRouter([
   {
@@ -24,5 +25,9 @@ export const router = createBrowserRouter([
   {
     path: '/signin',
     element: <SignIn/>,
+  },
+  {
+    path: '*',
+    element: <Error/>,
   }
 ]);
