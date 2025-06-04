@@ -7,7 +7,7 @@ import {
   signOut,
   setPersistence,
   browserLocalPersistence,
-  browserSessionPersistence
+  browserSessionPersistence,
 } from "firebase/auth";
 import { app } from "../firebase/firebase.config";
 
@@ -25,18 +25,20 @@ const AuthProvider = ({ children }) => {
   };
 
   const signIn = async (email, password, rememberMe) => {
-  setLoading(true);
-  const persistenceType = rememberMe
-    ? browserLocalPersistence
-    : browserSessionPersistence;
+    setLoading(true);
+    const persistenceType = rememberMe
+      ? browserLocalPersistence
+      : browserSessionPersistence;
 
-  await setPersistence(auth, persistenceType);
+    await setPersistence(auth, persistenceType);
 
-  return signInWithEmailAndPassword(auth, email, password);
-};
+    return signInWithEmailAndPassword(auth, email, password);
+  };
 
   const logOut = () => {
     setLoading(true);
+    localStorage.removeItem("jwt-token");
+    sessionStorage.removeItem("jwt-token");
     return signOut(auth);
   };
 

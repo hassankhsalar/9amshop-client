@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 export default function SignIn() {
   const { signIn } = useContext(AuthContext);
@@ -18,7 +19,25 @@ export default function SignIn() {
 
     try {
       setLoading(true);
-      await signIn(email, password, rememberMe);
+
+      const result = await signIn(email, password, rememberMe);
+      const loggedInUser = result.user;
+
+      const jwtResponse = await axios.post("http://localhost:5000/jwt", {
+        email: loggedInUser.email,
+      });
+
+      const token = jwtResponse.data.token;
+
+      console.log(token);
+
+      //Stores the token depending on "remember me")
+      if (rememberMe) {
+        localStorage.setItem("jwt-token", token);
+      } else {
+        sessionStorage.setItem("jwt-token", token);
+      }
+
       setMessage("Login successful!");
       navigate("/");
     } catch (error) {
@@ -74,6 +93,10 @@ export default function SignIn() {
               {message}
             </p>
           )}
+
+          <div>
+            <Link to='/signup'><p className="text-sm">Or <span className="text-sky-400">Create an Account</span></p></Link>
+          </div>
 
           <div className="flex items-center gap-2 text-white">
             <input

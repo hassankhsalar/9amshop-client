@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import axios from "axios";
 import { AuthContext } from "../../Provider/AuthProvider";
+import { Link } from "react-router-dom";
 
 export default function SignUp() {
   const { createUser } = useContext(AuthContext);
@@ -157,6 +158,9 @@ export default function SignUp() {
               {message}
             </p>
           )}
+          <div>
+            <p className="text-sm">Already have an account? <Link className="text-sky-400 text-base font-semibold" to='/signin'>Login</Link></p>
+          </div>
 
           <button
             type="submit"
