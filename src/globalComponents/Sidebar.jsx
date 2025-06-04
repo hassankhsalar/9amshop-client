@@ -19,12 +19,12 @@ const Sidebar = () => {
             className={`${isCollapse ? "h-screen px-[30px]" : "h-screen px-[10px]"} bg-white boxShadow transition-all duration-300 dark:bg-slate-900 ease`}>
             {
                 isCollapse ? (
-                    <img src="https://i.ibb.co/ZHYQ04D/footer-logo.png" alt="logo"
-                         className="w-[130px] cursor-pointer"
+                    <img src="https://i.ibb.co/YF6DjDBR/image-removebg-preview-1.png" alt="logo"
+                         className="w-[30px] cursor-pointer"
                          onClick={() => setIsCollapse(!isCollapse)}/>
                 ) : (
-                    <img src="https://i.ibb.co/0BZfPq6/darklogo.png" alt="logo"
-                         className="w-[50px] mx-auto cursor-pointer"
+                    <img src="https://i.ibb.co/s9YQr9jR/image-removebg-preview.png" alt="logo"
+                         className="w-[30px] mx-auto cursor-pointer"
                          onClick={() => setIsCollapse(!isCollapse)}/>
                 )
             }

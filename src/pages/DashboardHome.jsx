@@ -15,7 +15,7 @@ const DashboardHome = () => {
     try {
       if (!user?.email) return;
       const res = await axios.get(
-        `http://localhost:5000/user-shops?email=${user.email}`,
+        `https://nineamshop-server.onrender.com/user-shops?email=${user.email}`,
         {
           withCredentials: true,
         }

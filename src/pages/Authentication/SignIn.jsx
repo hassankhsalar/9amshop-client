@@ -23,7 +23,7 @@ export default function SignIn() {
       const result = await signIn(email, password, rememberMe);
       const loggedInUser = result.user;
 
-      const jwtResponse = await axios.post("http://localhost:5000/jwt", {
+      const jwtResponse = await axios.post("https://nineamshop-server.onrender.com/jwt", {
         email: loggedInUser.email,
       });
 

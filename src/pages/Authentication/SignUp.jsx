@@ -55,7 +55,7 @@ export default function SignUp() {
 
       await createUser(email, password); 
 
-      const response = await axios.post("http://localhost:5000/signup", {
+      const response = await axios.post("https://nineamshop-server.onrender.com/signup", {
         email,
         username,
         shopNames: filteredShops,
