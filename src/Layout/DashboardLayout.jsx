@@ -14,7 +14,7 @@ const DashboardLayout = () => {
         <aside>
             <Sidebar/>
         </aside>
-        <div className="min-h-screen">
+        <div className="min-h-screen w-full">
           <Outlet></Outlet>
         </div>
       </div>

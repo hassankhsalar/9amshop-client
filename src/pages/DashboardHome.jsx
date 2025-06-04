@@ -1,8 +1,9 @@
-import React, { useContext, useEffect, useState } from 'react';
-import bg from '../../public/bg.jpg';
-import axios from 'axios';
-import { faker } from '@faker-js/faker';
-import { AuthContext } from '../Provider/AuthProvider';
+import React, { useContext, useState } from "react";
+import bg from "/bg.jpg";
+import axios from "axios";
+import { faker } from "@faker-js/faker";
+import { AuthContext } from "../Provider/AuthProvider";
+import { Link } from "react-router-dom";
 
 const DashboardHome = () => {
   const { user } = useContext(AuthContext);
@@ -13,11 +14,13 @@ const DashboardHome = () => {
   const fetchShops = async () => {
     try {
       if (!user?.email) return;
-      const res = await axios.get(`http://localhost:5000/user-shops?email=${user.email}`);
+      const res = await axios.get(
+        `http://localhost:5000/user-shops?email=${user.email}`
+      );
       setShopNames(res.data.shops || []);
       setShowShops(true);
     } catch (error) {
-      console.error('Failed to fetch shop names:', error);
+      console.error("Failed to fetch shop names:", error);
     }
   };
 
@@ -25,7 +28,11 @@ const DashboardHome = () => {
     <div className="w-full h-screen flex flex-col relative">
       {/* Top Image Section */}
       <div className="h-1/3 rounded-md overflow-hidden">
-        <img className="w-full h-screen object-cover" src={bg} alt="Background" />
+        <img
+          className="w-full h-screen object-cover"
+          src={bg}
+          alt="Background"
+        />
       </div>
 
       {/* Avatar */}
@@ -39,17 +46,26 @@ const DashboardHome = () => {
       </div>
 
       {/* Bottom Section */}
-      <div className="h-2/3 bg-white pt-20 px-6 text-center">
+      <div className="h-2/3 w-full bg-white pt-20 px-6 text-center">
         <h1 className="text-2xl font-semibold text-gray-800 mb-4">
-          Welcome, {user?.email || 'Guest'}
+          Welcome, {user?.email || "Guest"}
         </h1>
 
         {showShops && (
           <div className="mt-4">
-            <h2 className="text-xl font-bold text-gray-700 mb-2">Your Shop Names:</h2>
+            <h2 className="text-xl font-bold text-gray-700 mb-2">
+              Your Shop Names:
+            </h2>
             <ul className="space-y-1 text-gray-600">
               {shopNames.map((shop, idx) => (
-                <li key={idx}>• {shop}</li>
+                <li key={idx}>
+                  <Link
+                    to={`/shop/${shop}`}
+                    className="text-blue-600 hover:underline"
+                  >
+                    • {shop}
+                  </Link>
+                </li>
               ))}
             </ul>
           </div>

@@ -19,16 +19,12 @@ const Footer = () => {
                 </div>
 
                 <div className="flex items-center flex-wrap gap-[10px] text-[#424242]">
-                    <a className="text-[1.3rem] p-1.5 cursor-pointer rounded-full hover:text-white hover:bg-[#3B9DF8] dark:text-[#abc2d3] transition-all duration-300">
+                    <a href="https://www.facebook.com/9amsolution" target="_blank" className="text-[1.3rem] p-1.5 cursor-pointer rounded-full hover:text-white hover:bg-[#3B9DF8] dark:text-[#abc2d3] transition-all duration-300">
                         <CgFacebook/>
                     </a>
-                    <a className="text-[1.2rem] p-1.5 cursor-pointer rounded-full hover:text-white hover:bg-[#3B9DF8] dark:text-[#abc2d3] transition-all duration-300">
-                        <BsTwitter/>
-                    </a>
-                    <a className="text-[1.2rem] p-1.5 cursor-pointer rounded-full hover:text-white hover:bg-[#3B9DF8] dark:text-[#abc2d3] transition-all duration-300">
-                        <BsInstagram/>
-                    </a>
-                    <a className="text-[1.2rem] p-1.5 cursor-pointer rounded-full hover:text-white hover:bg-[#3B9DF8] dark:text-[#abc2d3] transition-all duration-300">
+                    
+                    
+                    <a href="https://www.linkedin.com/company/9amsolution/" target="_blank" className="text-[1.2rem] p-1.5 cursor-pointer rounded-full hover:text-white hover:bg-[#3B9DF8] dark:text-[#abc2d3] transition-all duration-300">
                         <BsLinkedin/>
                     </a>
                 </div>
@@ -36,8 +32,7 @@ const Footer = () => {
 
                 <div
                     className="border-t dark:border-slate-700 border-gray-200 pt-[20px] flex items-center w-full flex-wrap gap-[20px] justify-center">
-                    <p className="text-[0.8rem] dark:text-slate-500 sm:text-[0.9rem] text-gray-600">© 2024 ZenUI
-                        Library. All Rights
+                    <p className="text-[0.8rem] dark:text-slate-500 sm:text-[0.9rem] text-gray-600">© 2025 9amshop. All Rights
                         Reserved. </p>
                 </div>
             </div>
